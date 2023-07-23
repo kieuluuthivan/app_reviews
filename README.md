@@ -42,9 +42,9 @@ pip3 install pandas apple_store_scraper google_play_scraper googletrans==3.1.0-a
 
 The `app_info.csv` file serves as the input to the `step1_fetch_reviews.py` script. This file should be in CSV format and contain the following columns:
 
-- `brand_name`(optional): The name of the brand or company associated with the app.
+- `brand_name`: The name of the brand or company associated with the app.
 - `country_code`: The country code (ISO 3166-1 alpha-2 format) where the app is available.
-- `country_name` (optional): The full name of the country where the app is available.
+- `country_name`: The full name of the country where the app is available.
 - `platform`: The platform of the app (either "iOS" or "Android").
 - `app_id`: The unique identifier of the app in the respective app store. For Android, this is the package name, and for iOS, it's the app's ID.
 - `app_name`: The name of the app. This field is not required for iOS apps.
