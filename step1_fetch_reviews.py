@@ -40,6 +40,9 @@ def fetch_android_reviews(app_id, country_code):
 # Load the app information from the CSV file into a DataFrame
 app_info_df = pd.read_csv('app_info.csv')
 
+# Get the current date in YYYY-MM-DD format
+current_date = datetime.now().strftime('%Y-%m-%d')
+
 # Get the current directory path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,9 +53,10 @@ existing_file_names = {file_name[:-11] for file_name in os.listdir(current_dir) 
 for index, row in app_info_df.iterrows():
     try:
         # Check if the file already exists with the same app information (excluding the date)
+        file_name = f"{row['country_name']}-{row['brand_name']}-{row['platform']}-reviews-{current_date}.csv"
         file_exists = any(file_name.startswith(f"{row['country_name']}-{row['brand_name']}-{row['platform']}-reviews-") for file_name in os.listdir('.'))
         if file_exists:
-            print(f"File already exists: {file_name} - Skipping fetching for app: {row['app_id']}")
+            print(f"File already exists: {row['country_name']} - Skipping fetching for app: {row['app_id']}")
             continue
 
         # Fetch reviews based on the platform
@@ -67,9 +71,6 @@ for index, row in app_info_df.iterrows():
         if appdf is None:
             print(f"No reviews found for app: {row['app_id']} - Skipping...")
             continue
-
-        # Get the current date in YYYY-MM-DD format
-        current_date = datetime.now().strftime('%Y-%m-%d')
 
         # Generate the file name with the current date and information from the current row
         file_name = f"{row['country_name']}-{row['brand_name']}-{row['platform']}-reviews-{current_date}.csv"
