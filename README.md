@@ -1,4 +1,4 @@
-# App Reviews Data Collection and Processing
+# App Reviews Data Collection
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 
